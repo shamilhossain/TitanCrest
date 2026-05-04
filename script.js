@@ -27,3 +27,11 @@ function toggleAcc(id) {
   if (!el) return;
   el.classList.toggle('open');
 }
+
+// Appended from claude_code.html for product page
+document.querySelectorAll('.pd-thumb').forEach(thumb => {
+  thumb.addEventListener('click', () => {
+    document.querySelectorAll('.pd-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+  });
+});

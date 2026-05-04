@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sell your luxury watch on TitanCrest">
+  <title>Sell Your Watch - TitanCrest</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Archivo:wght@300;400;500&display=swap');
+
+    .sell-landing {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #8a6e30;
+    --surface: #0e0e0e;
+    --surface-2: #161616;
+    --surface-3: #1f1e1c;
+    --text-primary: #F0EBE0;
+    --text-muted: #8A8680;
+    --border: rgba(201,168,76,0.18);
+    font-family: 'Archivo', sans-serif;
+    background: var(--surface);
+    color: var(--text-primary);
+    padding: 0;
+    margin: 0;
+  }
+
+  /* ── HERO ── */
+  .tc-hero {
+    position: relative;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px 72px;
+    overflow: hidden;
+  }
+  .tc-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 30%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 59px,
+        rgba(201,168,76,0.04) 60px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 59px,
+        rgba(201,168,76,0.04) 60px
+      );
+    pointer-events: none;
+  }
+  .tc-hero-label {
+    font-family: 'Archivo', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+  .tc-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5.5vw, 62px);
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    max-width: 680px;
+    margin: 0 0 12px;
+  }
+  .tc-hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .tc-hero-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    margin-bottom: 44px;
+    max-width: 400px;
+  }
+  .tc-search-bar {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--surface-2);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.2s;
+  }
+  .tc-search-bar:focus-within {
+    border-color: rgba(201,168,76,0.5);
+  }
+  .tc-search-icon {
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+  .tc-search-icon svg { display:block; }
+  .tc-search-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-primary);
+    padding: 16px 4px;
+    letter-spacing: 0.02em;
+  }
+  .tc-search-bar input::placeholder { color: var(--text-muted); }
+  .tc-appraise-btn {
+    background: var(--gold);
+    border: none;
+    padding: 0 28px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0e0e0e;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .tc-appraise-btn:hover { background: var(--gold-light); }
+  .tc-appraise-btn:active { background: var(--gold-dim); color: #fff; }
+  .tc-hero-note {
+    margin-top: 16px;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* divider */
+  .tc-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.25) 30%, rgba(201,168,76,0.25) 70%, transparent);
+    margin: 0 24px;
+  }
+
+  /* ── INFO GRID ── */
+  .tc-info-grid-wrap {
+    padding: 72px 24px 64px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .tc-section-header {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+  .tc-section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .tc-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 300;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.2;
+  }
+  .tc-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    border: 1px solid var(--border);
+  }
+  .tc-info-card {
+    background: var(--surface-2);
+    padding: 44px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  .tc-info-card:last-child { border-right: none; }
+  .tc-info-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .tc-info-card:hover { background: var(--surface-3); }
+  .tc-info-card:hover::after { transform: scaleX(1); }
+  .tc-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .tc-info-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.25;
+  }
+  .tc-info-card p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .tc-info-stat {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── STEPS ── */
+  .tc-steps-wrap {
+    padding: 64px 24px 80px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .tc-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 48px;
+    border: 1px solid var(--border);
+  }
+  .tc-step {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: center;
+    gap: 0;
+    padding: 36px 0 36px 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-2);
+    position: relative;
+    transition: background 0.2s;
+  }
+  .tc-step:last-child { border-bottom: none; }
+  .tc-step:hover { background: var(--surface-3); }
+  .tc-step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.18);
+    line-height: 1;
+    padding-left: 28px;
+    user-select: none;
+  }
+  .tc-step-body { padding: 0 24px; }
+  .tc-step-body h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin: 0 0 6px;
+  }
+  .tc-step-body p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.65;
+    max-width: 420px;
+  }
+  .tc-step-arrow {
+    padding-right: 32px;
+    color: rgba(201,168,76,0.3);
+    transition: color 0.2s;
+  }
+  .tc-step:hover .tc-step-arrow { color: var(--gold); }
+
+  /* CTA at bottom of steps */
+  .tc-steps-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .tc-steps-cta-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--text-muted);
+  }
+  .tc-steps-cta-text span { color: var(--text-primary); }
+  .tc-outline-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 12px 28px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .tc-outline-btn:hover {
+    background: rgba(201,168,76,0.07);
+    border-color: rgba(201,168,76,0.45);
+  }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-top container">
+      <div class="header-controls">
+        <button class="header-dropdown" type="button" aria-label="Select language">
+          English <span aria-hidden="true">▾</span>
+        </button>
+        <button class="header-dropdown" type="button" aria-label="Select currency">
+          USD <span aria-hidden="true">▾</span>
+        </button>
+      </div>
+
+      <button class="theme-toggle" type="button" aria-label="Toggle dark and light mode">
+        ☾
+      </button>
+    </div>
+
+    <div class="header-middle container">
+      <a class="brand-logo" href="index.html" aria-label="TitanCrest home">TitanCrest</a>
+
+      <form class="header-search" role="search" action="catalog.html" method="GET">
+        <label class="sr-only" for="watch-search">Search watches</label>
+        <input id="watch-search" type="search" placeholder="Search through 600,000+ watches...">
+      </form>
+
+      <div class="auth-actions">
+        <a class="auth-link" href="#">Login</a>
+        <a class="auth-button" href="#">Register</a>
+      </div>
+    </div>
+
+    <nav class="header-bottom">
+      <div class="container nav-row">
+        <a class="nav-dropdown" href="catalog.html">Buy a watch <span aria-hidden="true">▾</span></a>
+        <a class="nav-dropdown" href="sell.html">Sell a watch <span aria-hidden="true">▾</span></a>
+        <button class="nav-dropdown" type="button">Services <span aria-hidden="true">▾</span></button>
+        <button class="nav-dropdown" type="button">About <span aria-hidden="true">▾</span></button>
+      </div>
+    </nav>
+  </header>
+<main class="sell-landing" role="main">
+
+  <!-- HERO -->
+  <section class="tc-hero">
+    <p class="tc-hero-label">Watch Valuation</p>
+    <h1>Determine Your<br>Watch's <em>True Value</em></h1>
+    <p class="tc-hero-sub">Expert appraisals matched to live market data from 9 million active buyers.</p>
+
+    <div class="tc-search-bar">
+      <span class="tc-search-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <input type="text" placeholder="e.g., Rolex Submariner 116610LN" />
+      <button class="tc-appraise-btn">Get Free Appraisal</button>
+    </div>
+    <p class="tc-hero-note">No commitment required &nbsp;·&nbsp; Results in under 60 seconds</p>
+  </section>
+
+  <div class="tc-divider"></div>
+
+  <!-- INFO GRID -->
+  <section class="tc-info-grid-wrap">
+    <div class="tc-section-header">
+      <p class="tc-section-label">Why TitanCrest</p>
+      <h2 class="tc-section-title">The Smarter Way to Sell</h2>
+    </div>
+
+    <div class="tc-info-grid">
+      <!-- Card 1 -->
+      <article class="tc-info-card">
+        <div class="tc-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.2"/>
+            <ellipse cx="10" cy="10" rx="3.5" ry="7.5" stroke="currentColor" stroke-width="1.2"/>
+            <line x1="2.5" y1="10" x2="17.5" y2="10" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="tc-info-stat">9M+</div>
+        <h3>Global Reach</h3>
+        <p>Instant exposure to nine million verified collectors, dealers, and enthusiasts across 140 countries.</p>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="tc-info-card">
+        <div class="tc-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2.5L3 5.5V10c0 3.5 3 6.5 7 7.5 4-1 7-4 7-7.5V5.5L10 2.5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M7 10.5l2 2 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="tc-info-stat">100%</div>
+        <h3>Secure Escrow Payments</h3>
+        <p>Funds are held in regulated escrow until both parties confirm the transaction is complete.</p>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="tc-info-card">
+        <div class="tc-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 15L3.5 10.5 10 3l6.5 7.5L15 15H5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <line x1="10" y1="3" x2="10" y2="15" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="tc-info-stat">3%</div>
+        <h3>Low Commission Rates</h3>
+        <p>Industry-leading 3% seller commission — no hidden fees, no listing charges, no surprises.</p>
+      </article>
+    </div>
+  </section>
+
+  <div class="tc-divider"></div>
+
+  <!-- STEPS -->
+  <section class="tc-steps-wrap">
+    <div class="tc-section-header">
+      <p class="tc-section-label">The Process</p>
+      <h2 class="tc-section-title">Selling in Three Steps</h2>
+    </div>
+
+    <ol class="tc-steps-list" style="list-style:none;margin:48px 0 0;padding:0;">
+
+      <li class="tc-step">
+        <div class="tc-step-num">01</div>
+        <div class="tc-step-body">
+          <h4>Create Your Listing</h4>
+          <p>Submit your watch's reference number, condition, and service history. Our valuation engine cross-references live auction data to price it accurately.</p>
+        </div>
+        <div class="tc-step-arrow">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </li>
+
+      <li class="tc-step">
+        <div class="tc-step-num">02</div>
+        <div class="tc-step-body">
+          <h4>Receive Secure Payment</h4>
+          <p>A buyer commits — funds are locked in escrow immediately. You receive a guaranteed transfer before anything leaves your hands.</p>
+        </div>
+        <div class="tc-step-arrow">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </li>
+
+      <li class="tc-step">
+        <div class="tc-step-num">03</div>
+        <div class="tc-step-body">
+          <h4>Ship the Watch</h4>
+          <p>Use our pre-paid, fully insured shipping label. We cover up to $500K and provide real-time tracking until the buyer confirms delivery.</p>
+        </div>
+        <div class="tc-step-arrow">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </li>
+
+    </ol>
+
+    <div class="tc-steps-cta">
+      <p class="tc-steps-cta-text">Ready when you are. <span>No listing fees to start.</span></p>
+      <button class="tc-outline-btn">Start Selling</button>
+    </div>
+  </section>
+
+</main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        <div class="footer-column footer-newsletter">
+          <h2>Subscribe to TitanCrest</h2>
+          <p>Get exclusive access to new arrivals, market insights, and private offers.</p>
+
+          <form class="newsletter-form">
+            <label class="sr-only" for="newsletter-email">Email address</label>
+            <input id="newsletter-email" type="email" placeholder="Enter your email">
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+
+        <div class="footer-column">
+          <h3>Buy on TitanCrest</h3>
+          <ul class="footer-links">
+            <li><a href="#">Browse watches</a></li>
+            <li><a href="#">Popular brands</a></li>
+            <li><a href="#">Buyer protection</a></li>
+            <li><a href="#">Financing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Sell on TitanCrest</h3>
+          <ul class="footer-links">
+            <li><a href="sell.html">List your watch</a></li>
+            <li><a href="#">Seller protection</a></li>
+            <li><a href="#">Shipping guide</a></li>
+            <li><a href="#">Seller fees</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>About Us</h3>
+          <ul class="footer-links footer-links-tight">
+            <li><a href="#">Our story</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Support center</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <div class="payment-methods" aria-label="Accepted payment methods">
+          <span class="payment-icon">Visa</span>
+          <span class="payment-icon">Mastercard</span>
+          <span class="payment-icon">Escrow</span>
+        </div>
+
+        <div class="footer-meta">
+          <p>&copy; 2026 TitanCrest. All rights reserved.</p>
+          <div class="footer-legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
